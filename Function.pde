@@ -31,6 +31,7 @@ void mousePressed() {
   int selprint=((mouseX)/32);
   gobal[selprint].t1=true;
   gobal[selprint].showinfo() ;
+  thread("threadTime");
 }
 
 void reReadData() {
@@ -72,6 +73,7 @@ void allReRead() {
   finalCheck=0;
   oneshot=false;
   oneshotfinish=false;
+  readZoneTime=0;
 }
 
 void oneshotread() {
@@ -82,6 +84,7 @@ void oneshotread() {
     gobal[i].sendData();
     gobal[i].checkdata();
   }
+
   oneshotfinish=true;
   output.println(" ");
   println(" ");
@@ -121,5 +124,26 @@ void drawUpdateData() {
       finalReRead=3;
       thread("reReadData");
     }
+  }
+}
+
+void threadTime() {
+  int selprint=((mouseX)/32);
+  gobal[selprint].readTimeData();
+}
+
+void allReadTime() {
+
+  gobal[readZoneTime].readTimeData();
+  if (gobal[readZoneTime].checkRead==true ) {
+    readZoneTime++;
+    gobal[readZoneTime].resetZone();
+  }
+
+  if (readZoneTime==30) {
+    println(" ");
+    println("allZoneTime is done");
+    output.println(" ");
+    output.println("allZoneTime is done");
   }
 }

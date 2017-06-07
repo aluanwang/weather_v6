@@ -32,6 +32,7 @@ class Area extends OwMap {
       //change
       www=501;
       cityid=areaCode;
+      timeZoneId=index;
     }
 
 
@@ -46,10 +47,6 @@ class Area extends OwMap {
     //-----------宣報不同天候狀況
     daynight_read_texture=0;
     daynight=1;
-
-
-
-
 
     //-----------宣告特殊世間時間
     w1Anim=new Anims(id); 
@@ -120,7 +117,8 @@ class Area extends OwMap {
       aug[5]=map(easeOutBack(l1.o), 0, 1, 0, 255);
       aug[6]=map(easeOutBack(l3.o), 0, 1, 0, 255);
       aug[7]=map(easeOutBack(l4.o), 0, 1, 448, 0);
-      aug[8]=map(easeOutBack(l3.o), 0, 1, 180, -260);
+      aug[8]=map(easeOutBack(l0.o), 0, 1, 0, -350);
+      aug[9]=map(easeInOutSine(l3.o), 0, 1, 10, 40);
     } else {
       aug[0]=map(easeOutBack(l0.o), 1, 0, 0, 448);
       aug[1]=map(easeOutSine(l2.o), 1, 0, 0, 50);
@@ -130,7 +128,8 @@ class Area extends OwMap {
       aug[5]=map(easeOutBack(l1.o), 1, 0, 0, 255);
       aug[6]=map(easeOutBack(l3.o), 1, 0, 0, 255);
       aug[7]=map(easeOutBack(l4.o), 1, 0, 448, 0);
-      aug[8]=map(easeOutBack(l3.o), 1, 0, 180, -260);
+      aug[8]=map(easeOutBack(l0.o), 1, 0, 0, -350);
+      aug[9]=map(easeInOutSine(l2.o), 1, 0, 10, 40);
     }
 
     pg[id].beginDraw();
@@ -238,7 +237,6 @@ class Area extends OwMap {
       pg[id].text( int(c) + "°", 5, aug[4]);
 
 
-
       if (change==0) {//--------------------------------------天候狀況 yahoo
         pg[id].textSize(15);
         pg[id].fill(0);  
@@ -277,15 +275,35 @@ class Area extends OwMap {
 
       //--------------------------------------------------------------現在時間
       pg[id].pushMatrix();
-      pg[id].rotate(radians(90));
-      pg[id].textSize(14);
+      pg[id].rotate(radians(0));
+
       pg[id].fill(50);
-      for (int x = -1; x < 2; x++) {
-        pg[id].text( showdata, aug[8]+x, -12);
-        pg[id].text( showdata, aug[8], -12+x);
-      }
       pg[id].fill(255);
-      pg[id].text( showdata, aug[8], -12);
+      pg[id].translate(0, aug[8]);
+
+      pg[id].textSize(6);
+      pg[id].text( "/", 12, 204);
+
+      pg[id].textSize(12);
+      if (timeMonth==null) {
+        pg[id].text( nowMonth, 5, 198);
+      } else {
+        pg[id].text( timeMonth, 5, 198);
+      }
+      
+      if (timeDay==null) {
+        pg[id].text( nowDay, 16, 210);
+      } else {
+        pg[id].text( timeDay, 16, 210);
+      }
+
+
+      pg[id].translate(0, aug[9]);
+      pg[id].textSize(12);
+      pg[id].text( nf(realhour, 2), 6, 239);
+      pg[id].text( ":", 12, 254);
+      pg[id].text( nowMin, 6, 269);
+      //pg[id].text( nf(realhour, 2), aug[8], -12);
       pg[id].popMatrix();
     }//---------------------------------------------------------------------------------讀取資料失敗
 

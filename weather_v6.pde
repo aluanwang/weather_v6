@@ -9,6 +9,8 @@ int workTime;
 int p5width;
 int realnum=0;
 int readtime=0;
+int readZoneTime=0;
+
 int finalReRead=0;
 int finalCheck=0;
 int Areanum=31;
@@ -48,6 +50,8 @@ void draw() {
   background(0);
   nowHour=hour();
   nowMin=nf(minute(), 2);
+  nowMonth=nf(month(), 1);
+  nowDay=nf(day(), 1);
   workTime=millis();
 
   if (oneshot==false) {
@@ -65,7 +69,10 @@ void draw() {
   image(canvas, 0, 0);
   server.sendImage(canvas);
   //-----------------------------------------
-
   oscTrigger();
   drawUpdateData();
+  
+  if (frameCount%60==0 && readZoneTime<30 && finalReRead==3) {
+    thread("allReadTime");
+  }
 }

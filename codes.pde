@@ -11,19 +11,35 @@ PFont myFont;
 int nowHour;
 String nowMin;
 
+String nowMonth;
+String nowDay;
 
-int[] timeDiff={0,0,-12, 1, -1, 0, -6, -15, -11, 2, -6, 4, -6, 7, 7, 7, -13, -15, -13, 0, 1, -7, 0, -6, -4, -11, -3, -6, -1, -1, 0};
+
+
+int[] timeDiff={
+  0, 0, -12, 1, -1, 0, -6, -15, -11, 0, 
+  -6, 4, -6, 0, -5, -5, -12, -15, -13, 0, 
+  1, -7, 0, -6, -4, -11, -2, -6, -1, -1, 0};
 
 int[]  areanum={2306179, 2151849, 2459115, 1118370, 1208341, 2151330, 554890, 2487956, 455825, 1105779
   , 2346395, 2351310, 1591691, 20070421, 1939753, 2122265, 395269, 9807, 12590119, 1047862
   , 1132599, 44418, 2165352, 615702, 1940345, 455827, 2295411, 766273, 1047378, 1252431, 2161853};
 
-int[]  owmid={1668341, 1796236, 5106292, 1850147, 1619457, 2038349, 2618425, 3986984, 3451190, 2147714, 
-  6453366, 2179537, 3369157, 232422, 108410, 524901, 3646738, 6173331, 4699066, 1636544, 
+int[]  owmid={1668341, 1796236, 5106292, 1850147, 1619457, 2038349, 2618425, 3986984, 3451190, 1279945, 
+  6453366, 2179537, 3369157, 1808926, 108410, 524901, 3646738, 6173331, 4699066, 1636544, 
   1835848, 2643743, 1819729, 2988507, 292223, 3448439, 1275339, 6359304, 1642911, 1566083, 1795565};
+String[] timeZoneName={
+  "Asia/Taipei", "Asia/Shanghai", "America/New_York", "Asia/Tokyo", "Asia/Bangkok", "Asia/Taipei", "Europe/Copenhagen", "America/Mazatlan", "America/Maceio", "Asia/Taipei", 
+  "Europe/Helsinki", "Pacific/Wallis", "Europe/Helsinki", "Asia/Taipei", "Asia/Riyadh", "Europe/Moscow", "America/Caracas", "America/Vancouver", "America/Toronto", "Asia/Taipei", 
+  "Asia/Seoul", "Europe/London", "Asia/Taipei", "Europe/Paris", "Asia/Dubai", "America/Bahia", "Asia/Kolkata", "Europe/Madrid", "Asia/Jakarta", "Asia/Jakarta", "Asia/Taipei"};
 
-String[] chname={"台北", "上海", "紐約", "東京", "曼谷", "北京", "哥本哈根", "舊金山", "里約", "雪梨"
-  , "奧斯陸", "威靈頓", "開普敦", "坎帕拉", "利雅德", "莫斯科", "加拉加斯", "溫哥華", "休斯敦", "馬納多"
+
+String[] encity={"taipei", "Shanghai", "New York", "Tokyo", "Bangkok", "Beijing Shi", "Copenhagen", "San Francisco", "Rio de Janeiro", "Suzhou"
+  , "Oslo:", "Wellington", "Cape Town", "Hangzhou", "Riyadh", "Moscow", "Caracas", "Vancouver", "Houston", "Manado"
+  , "Seoul", "London", "Hong Kong", "Paris", "Dubai", "Sao Paulo", "Mumbai", "Madrid", "Jakarta", "Thanh pho Ho Chi Minh", "Shenzhen"};
+
+String[] chname={"台北", "上海", "紐約", "東京", "曼谷", "北京", "哥本哈根", "舊金山", "里約", "蘇州"
+  , "奧斯陸", "威靈頓", "開普敦", "杭州", "利雅德", "莫斯科", "加拉加斯", "溫哥華", "休斯敦", "馬納多"
   , "首爾", "倫敦", "香港", "巴黎", "杜拜", "聖保羅", "孟買", "馬德里", "雅加達", "胡志明市", "深圳"};
 
 String[] conditionCode={"龍捲風", "熱帶風暴", "颶風", "強雷陣雨", "雷陣雨", "混合雨雪", 

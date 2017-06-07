@@ -343,7 +343,7 @@ class Dust {
     normalize=2*abs((float(count)/500)-0.5);
     pg[name].pushMatrix();
     pg[name].imageMode(CORNER);
-    pg[name].tint(255, alpha*0.6);
+    pg[name].tint(255, alpha*0.4);
     pg[name].blendMode(ADD);
     pg[name].image(dustimg, normalize*40-80, 0);
     pg[name].blendMode(BLEND);

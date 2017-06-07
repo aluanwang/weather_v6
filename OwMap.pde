@@ -1,4 +1,4 @@
-class OwMap {
+class OwMap extends TimeZone {
   int id;
   int cityid;
   int utc;
@@ -62,6 +62,7 @@ class OwMap {
   String[] goldkey={"c3117167ff7fb7d604c8d559471322cf", "68e41f712e447f78d000defa30507d4a", "bcb64b3b297f012260ce9e4f1d9fd67b"};
   int radkey;
   OwMap () {
+    
   }
 
   void testRead() {
@@ -123,7 +124,7 @@ class OwMap {
     weather =  weatherXml.getString("value");
     code2 = weatherXml.getInt("number");
     city = location.getString("name");
-    realhour=nowHour+timeDiff[id];
+    realhour=(nowHour+timeDiff[id])%24;
 
     if (realhour>12) {
       list[5]="PM";
@@ -169,8 +170,8 @@ class OwMap {
 
   void showinfo() {
     output.println(city+":"+" "+ c+"度，當地時間"+realhour+"，日出："+am[0]+" 日落："+pm[0]+" "+showDayNight);
-    println(city+":"+" "+ c+"度，當地時間"+realhour+"，日出："+am[0]+" 日落："+pm[0]+" "+showDayNight);
-    println(sun+",       "+int(list3[0])+","+int(list6[0])+","+utc+","+id+",www"+www);
+    print(city+":"+" "+ c+"度，當地時間"+realhour+"，日出："+am[0]+" 日落："+pm[0]+" "+showDayNight);
+    //println(sun+",       "+int(list3[0])+","+int(list6[0])+","+utc+","+id+",www"+www);
   }
 
   void demoSendData() {
